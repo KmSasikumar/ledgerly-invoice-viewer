@@ -15,12 +15,12 @@ Brief: React + TypeScript invoice/document-viewer app, delivered with a GitHub r
 ```bash
 npm install
 npm run dev      # local dev server
-npm run build    # tsc + production build into dist/ — verified passing 2026-10-19
+npm run build    # tsc + production build into dist/ — verified passing 2026-10-25
 ```
 
-## Submission checklist (remaining)
+## Submission package (done, 2026-10-25)
 
-1. Push this folder to a new GitHub repo under the user's account (KmSasikumar).
-2. Deploy `dist/` (Vercel/Netlify/Antideploy) and note the live URL.
-3. Record a ≤2-minute Loom: open list → filter to Overdue → open INV-2026-003 → show computed totals → search a line item → Print/PDF.
-4. Send repo + live link + Loom to Offset via the Wellfound thread before the ~72-hour window closes (~21 Oct 2026).
+- Repo: https://github.com/KmSasikumar/ledgerly-invoice-viewer
+- Live: https://kmsasikumar.github.io/ledgerly-invoice-viewer/ (GitHub Pages, `gh-pages` branch)
+- Walkthrough: captioned screen capture, 80 seconds, no voice or face — https://github.com/KmSasikumar/ledgerly-invoice-viewer/blob/main/demo/ledgerly-walkthrough.mp4 — open list → filter to Overdue → open INV-2026-003 → show computed totals → search a line item → Print/PDF.
+- Remaining: send repo + live link + walkthrough to Offset via the Wellfound thread (thread status being verified; the original ~72-hour window closed ~21 Oct 2026, so this sends late with a note if the thread is still open).
