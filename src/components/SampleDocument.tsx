@@ -1,8 +1,14 @@
-import type { ExtractedField } from '../data/extractedFields'
-import { boxStyle } from '../data/extractedFields'
+import {
+  DOC_H,
+  DOC_W,
+  boxStyle,
+  type ExtractedField,
+} from '../data/extractedFields'
 
 interface Props {
   fields: ExtractedField[]
+  /** Stage-width scale: the canvas is fixed 640x800 and scaled as one unit. */
+  scale: number
 }
 
 /**
@@ -12,10 +18,19 @@ interface Props {
  * (as percentages of the 640x800 space); editing a field updates the text
  * shown here too. The line items sum to the original total of 48,250.00.
  */
-export default function SampleDocument({ fields }: Props) {
+export default function SampleDocument({ fields, scale }: Props) {
   const byId = (id: string) => fields.find((f) => f.id === id)?.value ?? ''
   return (
-    <div className="sample-doc" aria-label="Sample invoice document">
+    <div
+      className="sample-doc"
+      aria-label="Sample invoice document"
+      style={{
+        width: DOC_W,
+        height: DOC_H,
+        transform: `scale(${scale})`,
+        transformOrigin: 'top left',
+      }}
+    >
       <div className="sd-title">INVOICE</div>
 
       <span className="sd-label sd-label-inv">Invoice no.</span>

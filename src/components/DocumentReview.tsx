@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import SampleDocument from './SampleDocument'
 import {
   DOC_H,
@@ -47,6 +47,24 @@ export default function DocumentReview() {
   const [editDraft, setEditDraft] = useState('')
   const [notice, setNotice] = useState<string | null>(null)
   const stageRef = useRef<HTMLDivElement>(null)
+
+  // Scale for the sample document: the stage keeps a 640x800 ratio at any
+  // width, so the fixed 640x800 sample canvas is scaled as one unit. This
+  // keeps field values and highlight boxes aligned with the document text
+  // on narrow screens, where flowed HTML would otherwise drift apart.
+  const [stageScale, setStageScale] = useState(1)
+  useLayoutEffect(() => {
+    const el = stageRef.current
+    if (!el) return
+    const update = () => {
+      const w = el.getBoundingClientRect().width
+      if (w > 0) setStageScale(w / DOC_W)
+    }
+    update()
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   const pushLog = (text: string) =>
     setLog((entries) => [{ id: logSeq++, text, at: stamp() }, ...entries])
@@ -330,7 +348,9 @@ export default function DocumentReview() {
             onPointerMove={onStageMove}
             onPointerUp={onStageUp}
           >
-            {docKind === 'sample' && <SampleDocument fields={fields} />}
+            {docKind === 'sample' && (
+              <SampleDocument fields={fields} scale={stageScale} />
+            )}
             {docKind === 'image' && docUrl && (
               <img className="doc-media" src={docUrl} alt={docName} />
             )}

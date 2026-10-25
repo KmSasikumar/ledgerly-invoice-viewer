@@ -216,8 +216,9 @@ body {
   border-radius: 10px; font-size: 14px; color: var(--ink);
 }
 
-/* Sample document: values sit exactly on the mock boxes */
-.sample-doc { position: absolute; inset: 0; background: #fff; color: var(--ink); overflow: hidden; }
+/* Sample document: fixed 640x800 canvas, scaled as one unit to the stage
+   (see DocumentReview stageScale), so values and boxes stay aligned at any width */
+.sample-doc { position: absolute; left: 0; top: 0; background: #fff; color: var(--ink); overflow: hidden; }
 .sd-title { text-align: center; font-size: 30px; font-weight: 700; letter-spacing: 0.04em; margin: 0; padding-top: 3%; }
 .sd-label {
   position: absolute; font-size: 11px; color: var(--muted);
